@@ -1,0 +1,56 @@
+Ejercicio Spring
+
+Crear un bean servicioUsuario que obtenga mediante un método getUsuarioPorId los datos de un usuario a partir de un id, los datos de dicho usuario dependeran de otros servicios que habrá que 
+inyectar en el servicioUsuario
+
+Crear la siguiente estructura de paquetes:
+ · es.fpdual.springtutorial.modelo
+ · es.fpdual.springtutorial.servicio
+ · es.fpdual.springtutorial.repositorio
+ 
+Bajo el paquete de modelo creamos las siguientes clases(atributos necesarios para el constructor de las clases entre parentesis):
+ · Cargo(Integer id, String descripcion) // Crear constructor con todos los parámetros, getters, setters y sobrescribir el método toString para que pinte todos los atributos
+ · Rol(Integer id, String descripcion) // Crear constructor con todos los parámetros, getters, setters y sobrescribir el método toString para que pinte todos los atributos
+ · Direccion(Integer id, String domicilio, String localidad, String provincia, Integer codigoPostal) // Crear constructor con todos los parámetros, getters, setters y sobrescribir el método toString para que pinte todos los atributos
+ · Usuario(Integer id, Integer idCargo, Integer idRol, Integer idDireccion, String nombre, String apellido1, String apellido2) // Crear constructor con los parámetros indicados, getters, setters y sobrescribir el método toString para que pinte todos los atributos, incluidos this.cargo, this.direccion y this.rol
+	// La clase usuario además tendrá tres atributos más que no se inicializaran en el constructor, si no que se completaran al consultar desde el servicio(private Cargo cargo; private Rol rol; private Direccion direccion;)
+	
+Una vez creados los modelos, bajo el paquete es.fpdual.springtutorial.repositorio crearemos los siguientes repositorios con los atributos y métodos indicados
+(en ellos tendremos una lista de tres elementos del objeto correspondiente simulando una base de datos, ejemplo en el RepositorioCargo):
+ · RepositorioCargo
+	- private List<Cargo> cargos = Arrays.asList(new Cargo(1, "Secretario"),new Cargo(2, "Interventor"),new Cargo(3, "Alcalde"));
+	- public Cargo getCargoPorId(Integer id)
+		//Implementar método que busque en la lista el elemento con el id indicado
+ · RepositorioRol
+	- lista con 3 elementos simulando una BBDD)
+	- método que busque en la lista el elemento con el id indicado
+ · RepositorioDireccion
+	- (lista con 3 elementos simulando una BBDD)
+	- método que busque en la lista el elemento con el id indicado
+ · RepositorioUsuario
+	- private List<Usuario> usuarios = Arrays.asList(new Usuario(1, 1, 2, 3, "Fran", "Molina", "Lopez").....)(lista con 3 elementos simulando una BBDD)
+	- método que busque en la lista el elemento con el id indicado
+
+Terminados los repositorios, procedemos a crear en el paquete es.fpdual.springtutorial.servicio los servicios, 
+cada uno de ellos tendra como dependencia mínimo su propio repositorio y el contenido indicado(en el caso del ServicioUsuario tendra como dependencia el resto de servicios):
+ · ServicioCargo
+	- private RepositorioCargo repositorioCargo (Inyectar dependencia con spring)
+	- public Cargo getCargoPorId(Integer id)
+		// Solo contendrá la llamada a repositorioCargo.getCargoPorId(id) y devolvera el resultado
+ · ServicioRol
+	- private RepositorioRol repositorioRol (Inyectar dependencia con spring)
+	- public Rol getRolPorId(Integer id)
+ · ServicioDireccion
+	- private RepositorioDireccion repositorioDireccion (Inyectar dependencia con spring)
+	- public Direccion getDireccionPorId(Integer id)
+ · ServicioUsuario
+	- ServicioCargo servicioCargo, ServicioRol servicioRol, ServicioDireccion servicioDireccion, RepositorioUsuario repositorioUsuario (Inyectar dependencias con spring)
+	- public Usuario getUsuarioPorId(Integer id)
+		// Esté método se encargará de llamar al repositorioUsuario para obtener el usuario correspondiente
+		// y a los servicios correspondientes para completar el usuario con los datos de cargo, rol y direccion
+		
+En el método main de la aplicación principal(SpringTutorialApplication) obtendremos el bean de ServicioUsuario usando el applicationContext y llamaremos al 
+servicioUsuario.getUsuarioPorId tres veces, con los tres distintos usuarios que hayamos dado de alta e imprimiremos cada uno de ellos por pantalla
+// Ej: 
+// Usuario usuario = servicioUsuario.getUsuarioPorCodigo(1);
+// System.out.println(usuario);
