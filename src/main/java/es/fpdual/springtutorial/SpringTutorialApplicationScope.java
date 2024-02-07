@@ -1,26 +1,27 @@
 package es.fpdual.springtutorial;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
-import es.fpdual.springtutorial.dependencias.ImprimeCadena;
-import es.fpdual.springtutorial.dependencias.scope.Prototype;
 import es.fpdual.springtutorial.dependencias.scope.Singleton;
 
-@SpringBootApplication
+@Configuration
+@ComponentScan
 public class SpringTutorialApplicationScope {
 
 	public static void main(String[] args) {
-		ApplicationContext ac = SpringApplication.run(SpringTutorialApplicationScope.class, args);
+		try (AnnotationConfigApplicationContext applicationContext
+				= new AnnotationConfigApplicationContext(SpringTutorialApplicationScope.class)) {
 		
-		Singleton singleton = ac.getBean(Singleton.class);
-		Singleton singleton2 = ac.getBean(Singleton.class);
-		
-		System.out.println(singleton);
-		System.out.println(singleton.getPrototype());
-		System.out.println(singleton2);
-		System.out.println(singleton2.getPrototype());
+			Singleton singleton = applicationContext.getBean(Singleton.class);
+			Singleton singleton2 = applicationContext.getBean(Singleton.class);
+			
+			System.out.println(singleton);
+			System.out.println(singleton.getPrototype());
+			System.out.println(singleton2);
+			System.out.println(singleton2.getPrototype());
+		}
 	}
 
 }

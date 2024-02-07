@@ -1,20 +1,25 @@
 package es.fpdual.springtutorial;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 import es.fpdual.springtutorial.dependencias.lifecycle.LifeCycleBean;
 
-@SpringBootApplication
+@Configuration
+@ComponentScan
 public class SpringTutorialApplicationLifeCycle {
 
 	public static void main(String[] args) {
-		ApplicationContext ac = SpringApplication.run(SpringTutorialApplicationLifeCycle.class, args);
+
+		try (AnnotationConfigApplicationContext applicationContext
+				= new AnnotationConfigApplicationContext(SpringTutorialApplicationLifeCycle.class)) {
 		
-		LifeCycleBean lc = ac.getBean(LifeCycleBean.class);
+			LifeCycleBean lc = applicationContext.getBean(LifeCycleBean.class);
+					
+			System.out.println(lc);
+		}
 		
-		System.out.println(lc);
 	}
 
 }
