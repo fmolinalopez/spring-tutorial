@@ -15,7 +15,7 @@ public class SpringTutorialApplicationXml {
 				= new ClassPathXmlApplicationContext("application-config.xml")) {
 			
 			XmlBean xmlBean
-				= applicationContext.getBean(XmlBean.class);
+				= ProveedorContextoAplicacion.getApplicationContext().getBean(XmlBean.class);
 			
 			System.out.println(xmlBean);
 			System.out.println(xmlBean.getXmlBeanDependency());

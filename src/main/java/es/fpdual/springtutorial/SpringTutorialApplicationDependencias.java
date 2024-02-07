@@ -18,6 +18,7 @@ public class SpringTutorialApplicationDependencias {
 			ImprimeCadena ic = applicationContext.getBean(ImprimeCadena.class);
 	
 			ic.imprimeCadena("Prueba");
+			ic.imprimeCadena("Pruebaaaaaaaaa");
 		}
 	}
 

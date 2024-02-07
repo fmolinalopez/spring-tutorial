@@ -14,7 +14,8 @@ public class SpringTutorialApplicationComponentScan {
 		
 		try (AnnotationConfigApplicationContext applicationContext
 				= new AnnotationConfigApplicationContext(SpringTutorialApplicationComponentScan.class)) {
-			ComponentScanBean cs = applicationContext.getBean(ComponentScanBean.class);
+//			ComponentScanBean cs = applicationContext.getBean(ComponentScanBean.class);
+			ComponentScanBean cs = ProveedorContextoAplicacion.getApplicationContext().getBean(ComponentScanBean.class);
 			
 			System.out.println(cs);
 		}
