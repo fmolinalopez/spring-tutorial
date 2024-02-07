@@ -23,5 +23,4 @@ public class SpringTutorialApplication {
 		System.out.println(usuario2);
 		System.out.println(usuario3);
 	}
-
 }

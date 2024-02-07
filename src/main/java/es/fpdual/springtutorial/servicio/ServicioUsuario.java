@@ -1,6 +1,5 @@
 package es.fpdual.springtutorial.servicio;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.fpdual.springtutorial.modelo.Cargo;
@@ -22,7 +21,6 @@ public class ServicioUsuario {
 
 	public ServicioUsuario(ServicioCargo servicioCargo, ServicioRol servicioRol, ServicioDireccion servicioDireccion,
 			RepositorioUsuario repositorioUsuario) {
-		super();
 		this.servicioCargo = servicioCargo;
 		this.servicioRol = servicioRol;
 		this.servicioDireccion = servicioDireccion;
