@@ -17,6 +17,9 @@ public class ServicioExpediente {
 	@Autowired
 	private RepositorioExpediente repositorioExpediente;
 	
+	@Autowired
+	private ServicioDocumento servicioDocumento;
+	
 	public List<Expediente> getExpedientes() {
 		return this.repositorioExpediente.getExpedientes();
 	}
@@ -46,9 +49,13 @@ public class ServicioExpediente {
 		this.repositorioExpediente.eliminarExpediente(id);
 	}
 	
-	public void anadirDocumentosAExpediente(Integer idExpediente, List<Documento> documentos) {
+	public void anadirDocumentosAExpediente(Integer idExpediente, Documento documento) {
 		Expediente exp = this.repositorioExpediente.getExpedientePorId(idExpediente);
+		List<Documento> documentos = exp.getDocumentos();
+		documentos.add(documento);
 		exp.setDocumentos(documentos);
+		
+		this.servicioDocumento.anadirDocumentoAExpediente(documento, idExpediente);
 		this.repositorioExpediente.editarExpediente(exp);
 	}
 }

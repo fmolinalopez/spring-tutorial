@@ -1,5 +1,6 @@
 package es.fpdual.springtutorial.modelo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class Expediente {
 	
 	private Date fechaCreacion;
 	
-	List<Documento> documentos;
+	List<Documento> documentos = new ArrayList<>();
 
 	public Expediente() {
 	}

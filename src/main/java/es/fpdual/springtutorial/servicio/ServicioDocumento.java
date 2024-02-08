@@ -45,4 +45,11 @@ public class ServicioDocumento {
 	public Documento getDocumentoPorId(Integer id) {
 		return this.repositorioDocumento.getDocumentoPorId(id);
 	}
+	
+	public void anadirDocumentoAExpediente(Documento documento, Integer idExpediente) {
+		Documento documentoACompletar = this.getDocumentoPorId(documento.getId());
+		documentoACompletar.setIdExpediente(idExpediente);
+		
+		this.editarDocumento(documentoACompletar);
+	}
 }

@@ -1,6 +1,8 @@
 package es.fpdual.springtutorial.controlador;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,7 +60,21 @@ public class ControladorExpediente {
 		Expediente expediente = this.servicioExpediente.getExpedientePorId(id);
 		List<Documento> documentos = this.servicioDocumento.getDocumentos();
 		
-		return "";
+		documentos = documentos.stream().filter(d -> Objects.isNull(d.getIdExpediente()) || !d.getIdExpediente().equals(id)).collect(Collectors.toList());
+		
+		model.addAttribute("expediente", expediente);
+		model.addAttribute("documentos", documentos);
+		model.addAttribute("documentoAnadir", new Documento());
+		
+		return "expediente/anadirDocumentos";
+	}
+	
+	@PostMapping("/expediente/anadir")
+	public String anadirDocumentoAExpediente(@ModelAttribute Documento documentoAnadir, Model model) {
+		
+		this.servicioExpediente.anadirDocumentosAExpediente(documentoAnadir.getIdExpediente(), documentoAnadir);
+		
+		return "redirect:/expediente/anadir/"+documentoAnadir.getIdExpediente();
 	}
 	
 	@PostMapping("/expediente")

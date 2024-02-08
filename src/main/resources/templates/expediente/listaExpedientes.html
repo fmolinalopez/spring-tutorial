@@ -14,6 +14,7 @@
 	      <th scope="col">Fecha creacion</th>
 	      <th scope="col"></th>
 	      <th scope="col"></th>
+	      <th scope="col"></th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -22,6 +23,11 @@
 	      <td th:text="${expediente.alias}"/>
 	      <td th:text="${expediente.fechaCreacion}"/>
 	      <td><a th:href="@{'/expediente/' + ${expediente.id}}">Editar</a></td>
+	      <td>
+	      	<a th:href="@{'/expediente/anadir/' + ${expediente.id}}">
+	      		<button type="button" class="btn btn-primary">Anadir documentos</button>
+	      	</a>
+	      </td>
 	      <td>
 	      	<form action="#" method="post" th:action="@{/expediente/eliminar}" th:object="${expedienteABorrar}">
 	      		<input type="hidden" name="id" th:value="${expediente.id}"/>
