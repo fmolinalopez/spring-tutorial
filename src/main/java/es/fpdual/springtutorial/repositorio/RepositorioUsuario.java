@@ -11,10 +11,13 @@ import lombok.Getter;
 @Repository
 public class RepositorioUsuario {
 
-	@Getter
-	private List<Usuario> usuarios = new ArrayList<>();
+	private final List<Usuario> usuarios = new ArrayList<>();
 	
 	public void altaUsuario(Usuario usuario) {
 		this.usuarios.add(usuario);
+	}
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
 	}
 }

@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>
+<html>
+<head><title>Home Page</title></head>
+<body>
+	<h1>Listado de usuarios</h1>
+	<tr th:each="usuario: ${usuarios}">
+		<td th:text="${usuario.nombre}"/></br>
+		<td th:text="${usuario.apellido1}"/></br>
+		<td th:text="${usuario.apellido2}"/></br>
+	</tr>
+</body>
+</html>

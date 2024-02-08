@@ -9,11 +9,14 @@ import es.fpdual.springtutorial.repositorio.RepositorioUsuario;
 import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor
 public class ServicioUsuario {
 
 	private RepositorioUsuario repositorioUsuario;
 	
+	public ServicioUsuario(RepositorioUsuario repositorioUsuario) {
+		this.repositorioUsuario = repositorioUsuario;
+	}
+
 	public Usuario altaUsuario(Usuario usuario) {
 		this.repositorioUsuario.altaUsuario(usuario);
 		return usuario;
