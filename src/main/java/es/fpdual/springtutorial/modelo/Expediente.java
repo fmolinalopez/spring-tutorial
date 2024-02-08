@@ -1,27 +1,24 @@
 package es.fpdual.springtutorial.modelo;
 
 import java.util.Date;
+import java.util.List;
 
-public class Documento {
+public class Expediente {
 
 	private Integer id;
 	
 	private String alias;
 	
-	private String extension;
-	
 	private Date fechaCreacion;
 	
-	private Integer idExpediente;
+	List<Documento> documentos;
 
-	public Documento() {
+	public Expediente() {
 	}
 
-	public Documento(Integer id, String alias, String extension, Date fechaCreacion) {
-		super();
+	public Expediente(Integer id, String alias, Date fechaCreacion) {
 		this.id = id;
 		this.alias = alias;
-		this.extension = extension;
 		this.fechaCreacion = fechaCreacion;
 	}
 
@@ -41,14 +38,6 @@ public class Documento {
 		this.alias = alias;
 	}
 
-	public String getExtension() {
-		return extension;
-	}
-
-	public void setExtension(String extension) {
-		this.extension = extension;
-	}
-
 	public Date getFechaCreacion() {
 		return fechaCreacion;
 	}
@@ -57,11 +46,11 @@ public class Documento {
 		this.fechaCreacion = fechaCreacion;
 	}
 
-	public Integer getIdExpediente() {
-		return idExpediente;
+	public List<Documento> getDocumentos() {
+		return documentos;
 	}
 
-	public void setIdExpediente(Integer idExpediente) {
-		this.idExpediente = idExpediente;
+	public void setDocumentos(List<Documento> documentos) {
+		this.documentos = documentos;
 	}
 }
