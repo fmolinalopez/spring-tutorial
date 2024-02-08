@@ -1,0 +1,19 @@
+Crear un CRUD web básico para una aplicación de gestion documental que trabaja con documentos y expedientes.
+Un expediente puede tener n documentos y un documento solo puede pertenecer a un expediente
+Como base de datos simulada trabajaremos con una lista en el repositorio
+Adicional al CRUD la aplicación debe dejarnos añadir y quitar documentos de un expediente.
+
+Requisitos
+ Modelos:
+	Documento(Integer id, String alias, String extension, Integer tamanio, Date fechaCreacion) adicionalmente tendrá un atributo idExpediente
+	que completaremos cuando lo añadamos a uno.
+	Expediente(Integer id, String alias, Date fechaCreacion) adicionalmente tendrá un atributo List<Documento> documentos
+
+ Cada uno de los modelos dispondra de sus vistas(estiladas con bootstrap), controlador, servicio y repositorio correspondiente
+ Vistas necesarias:
+	·Una vista para el alta
+	·Una vista con el listado de todos los documentos desde la que 
+	 se pueda acceder a la edición de cada elemento
+	·Una vista para la edición de los datos de los documentos desde la que también podremos eliminar el elemento. 
+	 En esta vista el id de expediente debe de ser un enlace a la pantalla de edicion del expediente
+	·Una vista para la edición de los datos del expediente, que también nos permita añadir y eliminar documentos del expediente
