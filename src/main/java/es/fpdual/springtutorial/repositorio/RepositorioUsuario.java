@@ -16,6 +16,10 @@ public class RepositorioUsuario {
 	public void altaUsuario(Usuario usuario) {
 		this.usuarios.add(usuario);
 	}
+	
+	public Integer getSiguienteId() {
+		return usuarios.isEmpty() ? 1 : usuarios.get(usuarios.size()-1).getId()+1;
+	}
 
 	public List<Usuario> getUsuarios() {
 		return usuarios;

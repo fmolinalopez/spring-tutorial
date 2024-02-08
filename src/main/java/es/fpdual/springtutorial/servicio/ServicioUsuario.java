@@ -18,6 +18,8 @@ public class ServicioUsuario {
 	}
 
 	public Usuario altaUsuario(Usuario usuario) {
+		Integer siguienteId = this.repositorioUsuario.getSiguienteId();
+		usuario.setId(siguienteId);
 		this.repositorioUsuario.altaUsuario(usuario);
 		return usuario;
 	}
